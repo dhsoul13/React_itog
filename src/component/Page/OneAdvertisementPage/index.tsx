@@ -11,6 +11,8 @@ import Arrow from '../../../assets/Icon/arrow';
 import SliderOther from '../../Common/SliderOther';
 import SpinCastom from '../../Common/Spin';
 import { PriceSlice } from '../../../helpers/PriceSlice';
+import { useSelectorGet } from '../../../hooks/useDateAdd';
+import AlertCompanent from '../../Common/Alert';
 
 type OneAdvertisementPageType = {
   data: Array<any> | undefined;
@@ -19,24 +21,32 @@ type OneAdvertisementPageType = {
 const OneAdvertisementPage = ({ data, id }: OneAdvertisementPageType) => {
   const [el, setEl] = useState<any>();
   const buttonRef = useRef<any>();
+  const [err, setErr] = useState<boolean>(false);
   const navigate = useNavigate();
-  const isAuth = true;
+  const { isAuth } = useSelectorGet('Auth', 'Auth');
   useMemo(() => {
     const el = data?.filter((el: any) => String(el.id) === id)[0];
     setEl(el);
   }, [data]);
   const handlerPhoneClick = () => {
+    setErr(false);
     if (isAuth) {
       const teg = buttonRef.current;
       teg.classList.add('disabele');
     } else {
-      navigate('/form/auth');
+      setErr(true);
+      setTimeout(() => {
+        setErr(false);
+      }, 900);
     }
   };
   if (data?.length) {
     return (
       <div className="oneadvertisemen__container container">
         <div className="oneadvertisemen__content">
+          <span className="oneadvertisemen__alert">
+            {err ? <AlertCompanent messange="Авторизуйтесь" type="error" /> : ''}
+          </span>
           <div className="oneadvertisemen__header">
             <div className="oneadvertisemen__back">
               <NavLink to="/" className="oneadvertisemen__back-arrow">
@@ -79,7 +89,10 @@ const OneAdvertisementPage = ({ data, id }: OneAdvertisementPageType) => {
               </div>
               <div className="oneadvertisemen__price-m">
                 <h3 className="oneadvertisemen__price-info">{PriceSlice(el?.price)}</h3>
-                <Button type="primary" className="oneadvertisemen__button">
+                <Button
+                  type="primary"
+                  className="oneadvertisemen__button"
+                  onClick={handlerPhoneClick}>
                   Показать номер
                 </Button>
               </div>

@@ -2,8 +2,8 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-sequences */
 /* eslint-disable react/jsx-one-expression-per-line */
-import { Routes, Route, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+/* eslint-disable react/react-in-jsx-scope */
+import { Routes, Route } from 'react-router-dom';
 import Wrapper from './component/Common/Wrapper';
 import RegAndAuthContainer from './Container/RegAndAuthContainer';
 import MainContainer from './Container/MainContainer';
@@ -13,7 +13,6 @@ import OneAdvertisementContainer from './Container/OneAdvertisementContainer';
 import AddAdvertisementContainer from './Container/AddAdvertisementContainer';
 import FormAddAdvertisement from './Container/FormAddAdvertisement';
 import SerchContainer from './Container/SerchContainer';
-/* eslint-disable react/react-in-jsx-scope */
 
 const App = () => (
   <Routes>

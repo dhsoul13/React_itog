@@ -356,6 +356,10 @@ opacity: 0.5;
                 transform: translate(0, -50%);
                 opacity: 0.4;
             }
+            .ant-input-affix-wrapper{
+                border: 1px solid #4877F2;
+                border-radius: 4px 0px 0px 4px;
+            }
         }
         &__content{
             display: flex;
@@ -385,8 +389,11 @@ opacity: 0.5;
 
         }
     }
+    .header-laptop__icon{
+        margin-left: 28px;
+    }
     .header-laptop__entrance button{
-        margin-right: 10px;
+        
     }
     .hamburger.is-active+.header-laptop-menu{
         display: block;
@@ -397,11 +404,15 @@ opacity: 0.5;
     .header__menu-2{
         position: absolute;;
         top: 40px;
-        left: -25px;
+        left: -10px;
         z-index: 100;
-        width: 100vw;
+        min-width: 100%;
         height: 100vh;
         background-color: white;
+        -webkit-box-shadow: 0px 56px 33px 27px rgba(255, 255, 255, 1);
+        -moz-box-shadow: 0px 56px 33px 27px rgba(255, 255, 255, 1);
+        box-shadow: 0px 56px 33px 27px rgba(255, 255, 255, 1);
+
     }
     .header__menu-2__item{
         padding: 30px 33px;
@@ -442,7 +453,7 @@ opacity: 0.5;
 
     }
     .header-laptop__link{
-        margin-left: 32px;
+        margin-left: 30px;
     }
 
     .header__menu-2__item{
@@ -495,6 +506,9 @@ opacity: 0.5;
 .header-laptop{
     display: none;
 }
+.oneadvertisemen__back{
+    margin-top: 12px;
+}
 .header-mobile{
 display: block;
 height: 100%;
@@ -505,6 +519,14 @@ height: 100%;
     align-items: center;
     height: 100%;
     position: relative;
+}
+.header-mobile__serch-input{
+
+    .ant-input-affix-wrapper{
+        border: 1px solid #4877F2;
+        border-radius: 4px 0px 0px 4px;
+    }
+
 }
 .header-mobile__serch-input{
     position: absolute;
@@ -547,6 +569,16 @@ height: 100%;
 .header__menu-3__item{
     display: flex;
     align-items: center;
+    button:focus{
+        background: #ffac28;
+    color: #2C2D2E !important;
+    border: 1px solid #ffac28;
+    }
+    button:hover{
+        background: #ffac28;
+    color: #2C2D2E !important;
+    border: 1px solid #ffac28;
+    }
 }
 .header__menu-3__list li{
     padding: 24px 19px;
@@ -602,11 +634,6 @@ height: 100%;
     }
 }
 }
-
-.header__menu-3__item-icon{
-    
-}
-
 @include mobile{
     .container{
         max-width: $breakpoint_md;
@@ -630,6 +657,9 @@ height: 100%;
     justify-content: space-between;
     align-items: center;
     
+    }
+    &__text{
+        text-align: center;
     }
     &-comp{
         padding: 0px 24px;
@@ -715,7 +745,7 @@ height: 100%;
         }
     }
     .footer__conent-sm-top{
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
 }
 
@@ -736,11 +766,10 @@ height: 100%;
 .form__aurh-reg{
     position: relative;
 }
-// .form__container{
-//     position: relative;
-// }
-.form__body{
-
+.form__error{
+    padding: 3px 0px;
+    text-align: right;
+    color: #FF7765
 }
 .form{
     width: 100%;
@@ -867,8 +896,9 @@ text-align: left;
      fill:#424242;
      background-color: inherit;
      svg path{
-        fill:rgba(42, 47, 55, 0.4);
-        ;
+        z-index: 100;
+        height: 100%;
+        width: 100%;
      }
  }
 .form__body{
@@ -943,12 +973,7 @@ text-align: left;
 .form__button.err{
     background: #A7D0FF;
 }
-
-@include laptop{
-    .form__body {
-        // width: 300px; 
-    }
-}
+ 
 @include mobile {
     .form__container{
         padding: 0!important;
@@ -975,6 +1000,7 @@ text-align: left;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0px 10px;
 }
 .main__title-text{
 font-size: 48px;
@@ -1863,6 +1889,9 @@ text-align: left;
            justify-content: space-between;
            margin-bottom: 32px;
        }
+       &__body-info{
+           margin-right: 0;
+       }
        &__price-info{
            margin: 0;
        }
@@ -1915,6 +1944,9 @@ text-align: left;
     }
     .oneadvertisemen__other-mobile{
         display: block;
+    }
+    .oneadvertisemen__alert{
+        // position: absolute;
     }
 
     .other-slider{
@@ -2627,6 +2659,29 @@ border-radius: 4px;
         }
         .form-add__el-10{
             padding-bottom: 32px;
+            input{
+                display: none;
+            }
+            .ant-radio-group{
+                width: 100%;
+                height: 100%;
+                padding: 24px 24px;
+                display: flex;
+                align-items: center;
+            }
+            .ant-form-item-control-input-content{
+                background: rgba(42, 47, 55, 0.02);
+                border: 1px solid rgba(42, 47, 55, 0.08);
+                border-radius: 4px;
+            }
+            .ant-btn{
+                margin-left: auto;
+            }
+            .ant-form-item-has-error  .ant-form-item-control-input{
+                box-shadow: none;
+                border-radius: 4px;
+                border: 1px solid #ff4d4f!important;
+            }
         }
 
         .form-add__price-categ{
@@ -2662,6 +2717,12 @@ border-radius: 4px;
                 .ant-input-group-addon{
                     height: 64px;
                 }
+                .ant-input-group-addon{
+                    background: rgba(42, 47, 55, 0.02);
+                    border: 1px solid rgba(42, 47, 55, 0.08);
+                    border-right: 0;
+                    border-radius: 4px 0px 0px 4px;
+                }
             }
             .form-add__el-5-1{
                 width: 50%;
@@ -2670,9 +2731,6 @@ border-radius: 4px;
 
 
         .form-add__el-7{
-            .form-add__label{
-                
-            }
             .ant-upload-list-text-container{
                 margin-right: 30px;
             }
@@ -2765,137 +2823,7 @@ border-radius: 4px;
             }
 
         }
-
-
     }
-    // &__el-1{
-       
-    // }
-    // &__el-2{
-    //     .form-add__container .ant-form-item-control-input-content{
-    //         overflow-x: hidden
-    //     }
-    //     .form-add__input input{
-    //         height: 100%;
-    //     }
-    // }
-    // &__label{
-    //     font-size: 14px;
-    //     opacity: 0.6;
-    //     font-weight: 700;
-    //     line-height: 24px;
-    //     letter-spacing: 0px;
-    //     text-align: left;
-    //     color: rgba(42, 47, 55, 1);
-    //     margin-bottom: 8px;
-
-    // }
-    // &__input{
-    //     height: 64px;
-    //     .ant-form-item-control-input{
-    //         height: 64px;
-    //     }
-    //     .ant-form-item-control-input-content{
-    //         height: 64px;
-    //     }
-    //     input{
-    //         height: 100%;
-    //         margin-top: 8px;
-    //     }
-    // }
-    // &__selector{
-    //     height: 64px;
-    //     .ant-form-item-control-input{
-    //         height: 64px;
-    //     }
-    //     .ant-form-item-control-input-content{
-    //         height: 64px;
-    //     }
-    //     .ant-select{
-    //         height: 64px;
-    //         .ant-select-selector{
-    //             height: 64px;
-
-    //             .ant-select-selection-item{
-    //                 display: flex;
-    //                 align-items: center;
-    //             }
-    //         }
-    //     }
-    // }
-    // &__price-categ{
-    //     display: flex;
-    //     justify-content: space-between;
-    //     .form-add__el-3{
-    //         padding-right: 0px;
-    //         width: 100%;
-    //         .ant-form-item-control-input{
-    //             max-width: 398px;
-    //         }
-    //     }
-    //     .form-add__el-4{
-    //         width: 100%;
-    //     }
-    // }
-    // &__el-6{
-    //     .ant-input{
-    //         height: 128px;
-    //     }
-    // }
-
-    // .ant-upload-list-text-container{
-    //     margin-right: 30px;
-    // }
-    
-    // &__phone{
-    //     .ant-input-group-addon{
-    //         background-color: inherit;
-    //         border-right: 0;
-    //     }
-    
-    // }
-    // &__phone-date{
-    //     display: flex;
-    //     justify-content: space-between;
-    //     .form-add__el-5{
-    //         // width: 100%;
-    //         width: 100%;
-    //         padding-right: 0px;
-    //         .ant-form-item{
-    //             // max-width: 398px;
-    //         }
-    //         .form-add__phone .ant-input-group-wrapper {
-    //             max-width: 398px; 
-    //             input{
-    //                 height: 64px;
-    //             }
-    //         }
-    //     }
-    //     .form-add__el-5-1{
-    //         width: 100%;
-    //         input{
-    //             height: 64px;
-    //             max-width: 398px;
-    //         }
-    //     }
-    // }
-    // &__el-8{
-    //     input{
-    //         height: 64px;
-    //     }
-    // }
-    // &__el-10{
-    //   .ant-radio-group{
-    //     padding-left: 24px;
-    //     display: flex;
-    //     align-items: center;
-    //     height: 64px;
-    //     width: 100%;
-    //     background: rgba(42, 47, 55, 0.02);
-    //     border: 1px solid rgba(42, 47, 55, 0.08);
-    //     border-radius: 4px;
-    //   }  
-    // }
 
 }
 
@@ -2990,19 +2918,13 @@ border-radius: 4px;
         height: 40px; 
     }
 }
-
-
 @include castom(500px){
     .form-add__container{
         .ant-form-item-control-input-content{
             overflow-x: auto;
         }
-        .ant-upload{
-           
-        }
     }
 }
-
 ////serch
 .serch{
     &__content{
@@ -3094,12 +3016,32 @@ border-radius: 4px;
     box-shadow: none;
     border: 1px solid rgba(42, 47, 55, 0.08);
     border-bottom: 2px solid  #4877F2!important;
+   
+}
+.form-add__form .form-add__el-5 .ant-input:focus{
+    border: 0;
+    border-bottom: 0px solid  #4877F2!important;
+}
+.form-add__form .form-add__el-5 input{
+    border: 0;
+}
+.form-add__form .form-add__el-5 .ant-input-affix-wrapper:focus{
+    box-shadow: none;
+    border: 1px solid rgba(42, 47, 55, 0.08);
+    border-bottom: 2px solid  #4877F2!important;
+}
+.form-add__form .form-add__el-5 .ant-input-affix-wrapper:hover{
+    box-shadow: none;
+    border: 1px solid rgba(42, 47, 55, 0.08);
+    border-bottom: 2px solid  #4877F2!important;
+   
 }
 .form-add__form .ant-input.ant-input-status-error:focus{
     box-shadow: none;
-    border: 1px solid rgba(42, 47, 55, 0.08)!important;
+    border: 1px solid red;
+    border-bottom: 1px solid red!important;
+   
 }
-
 .form-add__form .ant-select:not(.ant-select-disabled):hover .ant-select-selector{
     box-shadow: none;
     border: 1px solid rgba(42, 47, 55, 0.08);
@@ -3116,4 +3058,8 @@ textarea.ant-input-status-error:hover{
 textarea:focus{
     box-shadow: none;
     border-bottom: 2px solid  #4877F2!important;
+}
+p .form__input.err + .form__show{
+    transform: translate(0%, -38%);
+    top: 38%;
 }

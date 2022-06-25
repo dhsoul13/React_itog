@@ -9,10 +9,8 @@ import { useLocation, NavLink } from 'react-router-dom';
 
 import Lock from '../../../../assets/Icon/lock';
 import PersonIcon from '../../../../assets/Icon/person';
-import Serch from '../../../../assets/Icon/serch';
 import ButtonComponent from '../../Button';
 import SerchComponent from '../../Serch';
-import MenuTypeOne from '../MenuType/MenuTypeOne';
 import MenuTypeTwo from '../MenuType/MenuTypeTwo';
 
 type HeaderTypeLaptopType = {

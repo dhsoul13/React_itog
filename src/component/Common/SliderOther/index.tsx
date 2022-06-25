@@ -9,7 +9,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import NameSliceForSlider from '../../../helpers/NameSliceForSlider';
 

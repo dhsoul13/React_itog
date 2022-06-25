@@ -4,7 +4,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/style-prop-object */
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import HeaderTypeDesktop from './HeaderType/HeaderTypeDesktop';
 import HeaderTypeLaptop from './HeaderType/HeaderTypeLaptop';

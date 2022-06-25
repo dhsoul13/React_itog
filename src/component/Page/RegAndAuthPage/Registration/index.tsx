@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -67,10 +68,11 @@ const Registration = () => {
                 type="text"
                 name="name"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.name}
                 placeholder="Имя"
+                onBlur={handleBlur}
               />
+              {errors.name && touched.name ? <div className="form__error">{errors.name}</div> : ''}
             </p>
             <p className={`p lastname ${values.lastname == '' ? '' : 'act'}`}>
               <input
@@ -78,10 +80,15 @@ const Registration = () => {
                 type="text"
                 name="lastname"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.lastname}
                 placeholder="Фамилия"
+                onBlur={handleBlur}
               />
+              {errors.lastname && touched.lastname ? (
+                <div className="form__error">{errors.lastname}</div>
+              ) : (
+                ''
+              )}
             </p>
             <p className={`p password ${values.password == '' ? '' : 'act'}`}>
               <input
@@ -89,11 +96,16 @@ const Registration = () => {
                 type={showPass ? 'text' : 'password'}
                 name="password"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.password}
                 placeholder="Пароль"
+                onBlur={handleBlur}
               />
               <Show onClick={showPassHandler} />
+              {errors.password && touched.password ? (
+                <div className="form__error">{errors.password}</div>
+              ) : (
+                ''
+              )}
             </p>
             <p className={`p configpassword ${values.confirmPassword == '' ? '' : 'act'}`}>
               <input
@@ -103,10 +115,15 @@ const Registration = () => {
                 type={showPassConfig ? 'text' : 'password'}
                 name="confirmPassword"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.confirmPassword}
                 placeholder="Повторите пароль"
+                onBlur={handleBlur}
               />
+              {errors.confirmPassword && touched.confirmPassword ? (
+                <div className="form__error">{errors.confirmPassword}</div>
+              ) : (
+                ''
+              )}
               <Show onClick={showPassConfigHandler} />
             </p>
             <p className={`p email ${values.email == '' ? '' : 'act'}`}>
@@ -115,10 +132,15 @@ const Registration = () => {
                 type="text"
                 name="email"
                 onChange={handleChange}
-                onBlur={handleBlur}
                 value={values.email}
                 placeholder="Email"
+                onBlur={handleBlur}
               />
+              {errors.email && touched.email ? (
+                <div className="form__error">{errors.email}</div>
+              ) : (
+                ''
+              )}
             </p>
             <p>
               <Checkbox onChange={handleChange} name="check" className="form__terms">

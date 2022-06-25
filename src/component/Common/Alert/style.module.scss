@@ -1,0 +1,16 @@
+.content{
+    position: absolute;
+    right: 25px;
+    width: 200px;
+    height: auto;
+    z-index: 10;
+    div:nth-child(1){
+        height: 100%;
+        align-items: center;
+    }
+    div{
+        svg{
+            transform: rotate(0);
+        }
+    }
+}

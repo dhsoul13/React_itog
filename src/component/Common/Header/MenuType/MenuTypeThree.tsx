@@ -120,29 +120,29 @@ const MenuTypeThree = ({ isAdd, isType, fun }: MenuTypeThreeType) => {
               style={{ background: '#FFAC28', width: 170, height: 36 }}
             />
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Вся лента</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/">Вся лента</NavLink>
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Автомобили</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/?type=Автомобили">Автомобили</NavLink>
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Аксессуары</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/?type=Аксессуары">Аксессуары</NavLink>
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Мебель</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/?type=Мебель">Мебель</NavLink>
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Одежда</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/?type=Одежда">Одежда</NavLink>
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Спорт</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/?type=Спорт">Спорт</NavLink>
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Техника</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/?type=Техника">Техника</NavLink>
           </li>
-          <li className="header__menu-3__item">
-            <NavLink to="main">Товары для дома</NavLink>
+          <li className="header__menu-3__item" onClick={fun}>
+            <NavLink to="/?type=Товары для дома">Товары для дома</NavLink>
           </li>
         </ul>
       </div>

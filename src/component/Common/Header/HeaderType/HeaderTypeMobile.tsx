@@ -1,16 +1,11 @@
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import useSelection from 'antd/lib/table/hooks/useSelection';
 import React, { useCallback, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useLocation, NavLink } from 'react-router-dom';
-
-import Exit from '../../../../assets/Icon/exit';
 import Lock from '../../../../assets/Icon/lock';
 import PersonIcon from '../../../../assets/Icon/person';
 import Serch from '../../../../assets/Icon/serch';
-import ButtonComponent from '../../Button';
 import SerchComponent from '../../Serch';
 import MenuTypeThree from '../MenuType/MenuTypeThree';
 

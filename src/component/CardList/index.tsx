@@ -6,7 +6,7 @@
 /* eslint-disable no-console */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/require-default-props */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Repeat from '../../assets/Icon/repeat';
 import Card from '../CardList/Card';
 

@@ -21,18 +21,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable quotes */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import {
   Button,
   Form,
-  InputNumber,
-  Radio,
-  Row,
   Select,
-  Slider,
-  Switch,
-  Upload,
   Input
 } from 'antd';
 import SaveHeader from '../SaveHeader';
@@ -55,12 +49,6 @@ const props = {
     }
   } };
 
-const prefixSelector = (
-  <Form.Item noStyle>
-    7
-  </Form.Item>
-);
-
 const onFinish = (values) => {
   console.log(values);
 };
@@ -69,7 +57,6 @@ const FormAdd = ({data}) => {
   const {isAdmin} = useSelectorGet("Auth", "Auth");
   const [forms] = Form.useForm();
   const date = getDateNow();
-  console.log(date);
   const toggleDisabled = (e) => {
     forms.setFieldsValue({published: undefined});
   };
@@ -148,9 +135,9 @@ const FormAdd = ({data}) => {
               name="phone"
               style={{ marginTop: `8px` }}
               className="form-add__phone"
-              rules={[{ required: true, message: 'Please input your phone number!' }]}
+              rules={[{ required: true, message: 'Укажите номер телефона' }]}
       >
-              <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+              <Input style={{ width: '100%' }} prefix="7" />
             </Form.Item>
           </div>
           <div className="form-add__el-5-1 el">
@@ -159,7 +146,7 @@ const FormAdd = ({data}) => {
               name="date"
               style={{ marginTop: `8px` }}
               className="form-add__date"
-              rules={[{ required: true, message: '' }]}
+              rules={[{ required: true, message: 'Укажите дату' }]}
       >
               <Input style={{ width: '100%' }} />
             </Form.Item>
@@ -220,7 +207,8 @@ const FormAdd = ({data}) => {
                 <Button
                   type="link"
                   onClick={toggleDisabled}
-                  style={{color: "#2A2F37" }}>
+                  style={{color: "#2A2F37" }}
+                  >
                   Сбросить выбор
                 </Button>
               </Radio.Group>

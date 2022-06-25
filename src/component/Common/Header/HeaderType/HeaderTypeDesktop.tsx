@@ -7,7 +7,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PersonIcon from '../../../../assets/Icon/person';
-import Serch from '../../../../assets/Icon/serch';
 import ButtonComponent from '../../Button';
 import SerchComponent from '../../Serch';
 import MenuTypeOne from '../MenuType/MenuTypeOne';
@@ -21,7 +20,6 @@ const HeaderTypeDesktop = ({ isAuth, isAdd }: HeaderTypeDesktopType) => {
   const refEl = useRef<HTMLInputElement | null>(null);
   const [showSerch, setShowSerch] = useState(true);
   const { pathname } = useLocation();
-
   useEffect(() => {
     if (pathname === '/advertisement') {
       setShowSerch(false);

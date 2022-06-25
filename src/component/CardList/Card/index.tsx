@@ -9,33 +9,29 @@ import WordHyphenation from '../../Common/WordHyphenation';
 type CardType = {
   info?: any;
 };
-const Card = ({ info }: CardType) => {
-  const [searchParams, setSerchParams] = useSearchParams();
-  const postQuery = searchParams.get('type');
-  return (
-    <li className="card">
-      <NavLink className="card__body" to={`advertisements/${info.id}`}>
-        <div className="card__img">
-          <img src={info.titleImg ? '' : '../img/not-photo.png'} alt="photo" />
-          <div className="card__teg">{info.teg}</div>
+const Card = ({ info }: CardType) => (
+  <li className="card">
+    <NavLink className="card__body" to={`advertisements/${info.id}`}>
+      <div className="card__img">
+        <img src={info.titleImg ? '' : '../img/not-photo.png'} alt="photo" />
+        <div className="card__teg">{info.teg}</div>
+      </div>
+      <div className="card__info">
+        <h2 className="card__title">{info.title}</h2>
+        <div className="card__subtitle">
+          <WordHyphenation text={info.subtitle} />
         </div>
-        <div className="card__info">
-          <h2 className="card__title">{info.title}</h2>
-          <div className="card__subtitle">
-            <WordHyphenation text={info.subtitle} />
-          </div>
-          <span className="card__price">{PriceSlice(info.price)}</span>
-          <div className="card__info-v">
-            <span className="card__date">{info.date}</span>
-            <span className="card__visit">
-              <Eye />
-              {`${info.watch}`}
-            </span>
-          </div>
+        <span className="card__price">{PriceSlice(info.price)}</span>
+        <div className="card__info-v">
+          <span className="card__date">{info.date}</span>
+          <span className="card__visit">
+            <Eye />
+            {`${info.watch}`}
+          </span>
         </div>
-      </NavLink>
-    </li>
-  );
-};
+      </div>
+    </NavLink>
+  </li>
+);
 
 export default Card;

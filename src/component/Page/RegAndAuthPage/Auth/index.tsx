@@ -86,6 +86,11 @@ const Auth = () => {
                 value={values.email}
                 placeholder="Email"
               />
+              {errors.email && touched.email ? (
+                <div className="form__error">{errors.email}</div>
+              ) : (
+                ''
+              )}
             </p>
             <p className={`p password ${values.password == '' ? '' : 'act'}`}>
               <input
@@ -98,6 +103,11 @@ const Auth = () => {
                 placeholder="Пароль"
               />
               <Show onClick={showPassHandler} />
+              {errors.password && touched.password ? (
+                <div className="form__error">{errors.password}</div>
+              ) : (
+                ''
+              )}
             </p>
             <button
               disabled={isValid && !dirty}

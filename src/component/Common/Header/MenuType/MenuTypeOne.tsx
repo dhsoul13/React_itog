@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Book from '../../../../assets/Icon/book';
 import Exit from '../../../../assets/Icon/exit';
 import Grid from '../../../../assets/Icon/grid';
