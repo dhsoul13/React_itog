@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/require-default-props */

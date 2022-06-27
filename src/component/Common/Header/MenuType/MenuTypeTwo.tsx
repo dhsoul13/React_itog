@@ -10,11 +10,14 @@ import Exit from '../../../../assets/Icon/exit';
 import Grid from '../../../../assets/Icon/grid';
 import { nameSlice } from '../../../../helpers/NameSlice';
 import { removeAuth } from '../../../../store/slice/AuthSlice';
+import { exitRequest } from '../../../../helpers/Request';
 
 const MenuTypeTwo = ({ fun }: any) => {
   const dispatch = useDispatch();
-  const handlerClick = (e: React.MouseEvent): void => {
+  const handlerClick = async (e: React.MouseEvent) => {
     fun();
+    localStorage.removeItem('token');
+    await exitRequest();
     dispatch(removeAuth(''));
   };
   const { name, isAdmin } = useSelector((state: any) => state.Auth.Auth);

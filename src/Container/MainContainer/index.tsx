@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-shadow */
 /* eslint-disable no-undef */
 import React, { useEffect } from 'react';
@@ -19,7 +20,7 @@ const MainContainer = () => {
           dispatch(addData(data));
         }, 1000);
       } catch (err) {
-        alert(err);
+        return err;
       }
     };
     fun();

@@ -9,11 +9,14 @@ import Book from '../../../../assets/Icon/book';
 import Exit from '../../../../assets/Icon/exit';
 import Grid from '../../../../assets/Icon/grid';
 import { nameSlice } from '../../../../helpers/NameSlice';
+import { exitRequest, loginRequest } from '../../../../helpers/Request';
 import { removeAuth } from '../../../../store/slice/AuthSlice';
 
 const MenuTypeOne = ({ onRef }: any) => {
   const dispatch = useDispatch();
-  const handlerClick = (e: React.MouseEvent): void => {
+  const handlerClick = async (e: React.MouseEvent) => {
+    localStorage.removeItem('token');
+    await exitRequest();
     dispatch(removeAuth(''));
   };
 

@@ -756,7 +756,7 @@ height: 100%;
     align-items: center;
     justify-content: center;
     position: absolute;
-    opacity: 0.3;
+    opacity: 0.5;
     top:0;
     left: 0;
     height: 100%;
@@ -3059,7 +3059,16 @@ textarea:focus{
     box-shadow: none;
     border-bottom: 2px solid  #4877F2!important;
 }
-p .form__input.err + .form__show{
-    transform: translate(0%, -38%);
-    top: 38%;
+.form__body div .form__input.err + .form__show{
+    transform: translate(0%, -40%);
+    top: 40%;
 }
+.form__body div .form__input + .form__show{
+    transform: translate(0%, -59%);
+    top: 59%;
+}
+.form__body div{
+   margin-bottom: 15px;
+}
+
+

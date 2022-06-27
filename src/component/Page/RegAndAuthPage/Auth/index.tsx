@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-cond-assign */
@@ -22,6 +23,9 @@ import Show from '../../../Common/Button/ShowInput';
 import NavLinks from '../common/NavLinks';
 import { users } from '../../../../helpers/data';
 import { addAuth } from '../../../../store/slice/AuthSlice';
+import { loginRequest } from '../../../../helpers/Request';
+import SpinCastom from '../../../Common/Spin';
+import AlertCompanent from '../../../Common/Alert';
 
 interface MyFormValues {
   password: string;
@@ -32,93 +36,117 @@ const Auth = () => {
   const dispatch = useDispatch();
   const Auth = useSelector((state: any) => state.Auth.Auth);
   const { isAuth } = Auth;
+  const [loading, setLoading] = useState(false);
   const initialValues: MyFormValues = {
     email: '',
     password: '',
   };
   const [showPass, setShowPass] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [err, setErr] = useState<boolean>(false);
   const showPassHandler = useCallback(() => {
     setShowPass(!showPass);
   }, [showPass]);
   return (
-    <div className="form__body">
-      <div className="form__header">
-        <h2>Hello world</h2>
-        <span>Создайте аккаунт</span>
-      </div>
-      <NavLinks />
-      <Formik
-        initialValues={initialValues}
-        validateOnBlur
-        onSubmit={(value: MyFormValues) => {
-          const user = users.filter(
-            (el) => el.email === value.email && el.password === value.password
-          );
-          if (user.length) {
-            setShowError(true);
-            dispatch(
-              addAuth({
+    <>
+      <span className="form__alert">
+        {err ? <AlertCompanent messange="Неправильно введены данные" type="error" /> : ''}
+      </span>
+      <div className="form__body">
+        <div className="form__header">
+          <h2>Hello world</h2>
+          <span>Создайте аккаунт</span>
+        </div>
+        <NavLinks />
+        <Formik
+          initialValues={initialValues}
+          validateOnBlur
+          onSubmit={async (value: MyFormValues, { setFieldValue }) => {
+            setLoading(true);
+            const responce = await loginRequest(value.email, value.password);
+
+            if (responce.status === 400) {
+              setLoading(false);
+              setErr(true);
+              setFieldValue('password', '');
+            }
+            if (responce.status === 200) {
+              setLoading(false);
+              const data = responce.data;
+              const sendData = {
                 isAuth: true,
-                isAdmin: user[0].admin,
-                name: user[0].name,
-                email: user[0].email,
-              })
-            );
-            console.log(user);
-            console.log(value);
-            <Navigate to="/" />;
-          } else {
-            setShowError(false);
-          }
-        }}
-        validationSchema={validateAuth}>
-        {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-          <Form className="form" onSubmit={handleSubmit}>
-            <p>{!showError ? '' : 'Неправильный пароль/email'}</p>
-            <p className={`p email ${values.email == '' ? '' : 'act'}`}>
-              <input
-                type="text"
-                name="email"
-                className={`form__input ${touched.email && errors.email && 'err'}`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder="Email"
-              />
-              {errors.email && touched.email ? (
-                <div className="form__error">{errors.email}</div>
-              ) : (
-                ''
-              )}
-            </p>
-            <p className={`p password ${values.password == '' ? '' : 'act'}`}>
-              <input
-                className={`form__input ${touched.password && errors.password && 'err'}`}
-                type={showPass ? 'text' : 'password'}
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-                placeholder="Пароль"
-              />
-              <Show onClick={showPassHandler} />
-              {errors.password && touched.password ? (
-                <div className="form__error">{errors.password}</div>
-              ) : (
-                ''
-              )}
-            </p>
-            <button
-              disabled={isValid && !dirty}
-              type="submit"
-              className={`form__button ${isValid && dirty ? '' : 'err'}`}>
-              Войти
-            </button>
-          </Form>
+                isAdmin: data.user.isAdmin,
+                name: data.user.name,
+                email: data.user.email,
+                id: data.user.id,
+              };
+              localStorage.setItem('token', data.accessToken);
+              dispatch(addAuth(sendData));
+            }
+          }}
+          validationSchema={validateAuth}>
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            isValid,
+            handleSubmit,
+            dirty,
+          }) => (
+            <Form className="form" onSubmit={handleSubmit}>
+              <div className={`p email ${values.email == '' ? '' : 'act'}`}>
+                <input
+                  type="text"
+                  name="email"
+                  className={`form__input ${touched.email && errors.email && 'err'}`}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  placeholder="Email"
+                />
+                {errors.email && touched.email ? (
+                  <div className="form__error">{errors.email}</div>
+                ) : (
+                  ''
+                )}
+              </div>
+              <div className={`p password ${values.password == '' ? '' : 'act'}`}>
+                <input
+                  className={`form__input ${touched.password && errors.password && 'err'}`}
+                  type={showPass ? 'text' : 'password'}
+                  name="password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                  placeholder="Пароль"
+                />
+                <Show onClick={showPassHandler} />
+                {errors.password && touched.password ? (
+                  <div className="form__error">{errors.password}</div>
+                ) : (
+                  ''
+                )}
+              </div>
+              <button
+                disabled={isValid && !dirty}
+                type="submit"
+                className={`form__button ${isValid && dirty ? '' : 'err'}`}>
+                Войти
+              </button>
+            </Form>
+          )}
+        </Formik>
+        {loading ? (
+          <div className="form__spiner">
+            <SpinCastom />
+          </div>
+        ) : (
+          ''
         )}
-      </Formik>
-    </div>
+      </div>
+    </>
   );
 };
 

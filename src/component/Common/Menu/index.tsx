@@ -6,13 +6,16 @@ import { useDispatch } from 'react-redux';
 import Book from '../../../assets/Icon/book';
 import Exit from '../../../assets/Icon/exit';
 import { nameSlice } from '../../../helpers/NameSlice';
+import { exitRequest } from '../../../helpers/Request';
 import { useSelectorGet } from '../../../hooks/useDateAdd';
 import { removeAuth } from '../../../store/slice/AuthSlice';
 
 const Menu = () => {
   const dispatch = useDispatch();
   const isAuth = useSelectorGet('Auth', 'Auth');
-  const handlerExit = () => {
+  const handlerExit = async () => {
+    localStorage.removeItem('token');
+    await exitRequest();
     dispatch(removeAuth(''));
   };
   return (

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable eqeqeq */
 /* eslint-disable no-unused-expressions */
@@ -24,7 +25,7 @@ const index = () => {
             dispatch(addData(data1));
           }, 1000);
         } catch (err) {
-          alert(err);
+          return err;
         }
       };
       fun();

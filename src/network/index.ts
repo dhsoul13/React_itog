@@ -1,23 +1,35 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
 import axios, { AxiosRequestConfig } from 'axios';
 
-const makeRequest = async ({
-  url, method = 'GET', data = {}, params = {}
-}: AxiosRequestConfig) => {
-  try {
-    const response = await axios({
-      method,
-      url,
-      data,
-      params,
-      baseURL: 'https://rickandmortyapi.com/api',
-      timeout: 10000
-    });
+export const $api = axios.create({
+  withCredentials: true,
+  baseURL: 'http://localhost:5000/api/auth'
+});
 
-    return response.data;
-  } catch (e) {
-    console.log(e);
-    return undefined;
+$api.interceptors.request.use(
+  (config:any) => {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    return config;
   }
-};
-
-export default makeRequest;
+);
+$api.interceptors.response.use(
+  (config) => config,
+  async (err) => {
+    const originalRequest = err.config;
+    if (err.response.status === 401 && err.config && !err.config._isRetry) {
+      originalRequest._isRetry = true;
+      try {
+        const response = await axios.get('http://localhost:5000/api/auth/refresh', {
+          withCredentials: true,
+        });
+        const data = await response.data;
+        localStorage.setItem('token', data.accessToken);
+        return $api.request(originalRequest);
+      } catch (e) {
+        return e;
+      }
+    }
+    throw err;
+  }
+);
